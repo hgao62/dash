@@ -10,7 +10,8 @@ from data import df
 register_page(
     __name__,
     path='/risk-analysis',
-    name='风险分析'
+    name='风险分析',
+    require_auth=True  # 需要登录
 )
 
 # Calculate risk metrics

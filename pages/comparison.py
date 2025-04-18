@@ -8,7 +8,8 @@ from data import df,stats_df
 register_page(
     __name__,
     path='/comparison',
-    name='股票比较'
+    name='股票比较',
+    require_auth=True  # 需要登录
 )
 
 layout = html.Div([

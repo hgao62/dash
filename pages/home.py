@@ -3,7 +3,7 @@ import plotly.express as px
 from dash import register_page
 from dash import Dash
 import dash
-
+from auth import login_required
 # Access the shared app instance
 from data import df, stats_df
 
@@ -11,11 +11,16 @@ from data import df, stats_df
 register_page(
     __name__,
     path='/',
-    name='市场概览'
+    name='市场概览',
+    
+    # require_auth=True  # 需要登录
 )
 
-# Page layout
-layout = html.Div([
+
+
+@login_required()
+def layout():
+    return html.Div([
     html.H2('市场概览', className='page-title'),
     html.Div([
         html.Div([
@@ -40,3 +45,4 @@ layout = html.Div([
         ], className='stats-container')
     ], className='page-content')
 ], className='page-layout')
+# Page layout

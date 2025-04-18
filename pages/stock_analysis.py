@@ -11,7 +11,8 @@ app = dash.get_app()
 register_page(
     __name__,
     path='/stock-analysis',
-    name='个股分析'
+    name='个股分析',
+    require_auth=True  # 需要登录
 )
 
 layout = html.Div([

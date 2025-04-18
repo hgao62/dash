@@ -1,0 +1,32 @@
+/* 登录模态框样式 */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+/* 用户信息样式 */
+#user-info {
+    font-weight: bold;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+/* 登录按钮样式 */
+#login-button {
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+/* 注销按钮样式 */
+#logout-button {
+    border-radius: 20px;
+    padding: 5px 15px;
+}

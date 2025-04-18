@@ -99,3 +99,22 @@ body {
     width: 100%;
     margin-top: 20px;
 }
+
+/* 重定向提示样式 */
+#redirect-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+/* 登录按钮过渡效果 */
+#login-button, #logout-button {
+    transition: opacity 0.3s ease;
+}
