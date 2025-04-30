@@ -33,7 +33,7 @@ def generate_nav_links():
 
 app.layout = html.Div([
     # 认证控制组件（放在所有内容之前）
-    dcc.Location(id='auth-redirect', refresh=True),
+    dcc.Location(id='redirect-to-home', refresh=True),
     html.Div(id='auth-redirect-message', style={'display': 'none'}),
     # 认证导航栏
     create_auth_navbar(),

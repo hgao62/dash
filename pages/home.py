@@ -13,7 +13,7 @@ register_page(
     path='/',
     name='市场概览',
     
-    # require_auth=True  # 需要登录
+    require_auth=True  # 需要登录
 )
 
 

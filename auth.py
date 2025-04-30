@@ -75,10 +75,10 @@ def create_auth_navbar():
     return html.Div(
         [
             # 用户信息显示区（始终存在）
-            html.Div(
-                id="user-info",
-                style={'position': 'absolute', 'right': '20px', 'top': '20px'}
-            ),
+            # html.Div(
+            #     id="user-info",
+            #     style={'position': 'absolute', 'right': '20px', 'top': '20px'}
+            # ),
             
             # 登录按钮（始终存在，通过样式控制显示/隐藏）
             dbc.Button(
@@ -97,7 +97,7 @@ def create_auth_navbar():
                 outline=True,
                 style={'display': 'none'} if not current_user['is_authenticated'] else {}
             ),
-            dcc.Location(id='redirect-to-home', refresh=True)  # 新增重定向组件
+            # dcc.Location(id='redirect-to-home', refresh=True)  # 新增重定向组件
         ],
         style={'position': 'absolute', 'right': '20px', 'top': '20px'}
     )
@@ -115,7 +115,7 @@ def register_auth_callbacks(app):
     @app.callback(
         [Output("login-modal", "is_open"),
          Output("auth-state", "data"),
-         Output("user-info", "children"),
+        #  Output("user-info", "children"),
          Output("login-message", "children"),
          Output("login-button", "style"),
          Output("logout-button", "style"),
@@ -123,13 +123,14 @@ def register_auth_callbacks(app):
         [Input("login-button", "n_clicks"),
          Input("login-submit", "n_clicks"),
          Input("login-cancel", "n_clicks"),
-         Input("logout-button", "n_clicks")],
+         Input("logout-button", "n_clicks")
+         ],
         [State("login-username", "value"),
          State("login-password", "value"),
          State("login-modal", "is_open"),
          State("auth-state", "data")]
     )
-    def handle_auth(login_btn, submit_btn, cancel_btn, logout_btn, 
+    def handle_auth(login_btn, submit_btn, cancel_btn, logout_btn,
                    username, password, is_open, auth_data):
         ctx = callback_context
         if not ctx.triggered:
@@ -138,8 +139,8 @@ def register_auth_callbacks(app):
         button_id = ctx.triggered[0]['prop_id'].split('.')[0]
         
         if button_id == "login-button":
-            return True, dash.no_update, dash.no_update, "", dash.no_update, dash.no_update, None
-        
+            # return True, dash.no_update, dash.no_update, "", dash.no_update, dash.no_update, None
+            return True, dash.no_update, "", dash.no_update, dash.no_update, None
         elif button_id == "login-submit":
             if username and password and verify_user(username, password):
                 current_user.update({
@@ -147,19 +148,20 @@ def register_auth_callbacks(app):
                     'username': username,
                     'role': users_db[username]['role']
                 })
+               
                 return (
                     False,  # 关闭模态框
                     current_user,  # 更新认证状态
-                    f"欢迎, {username}",  # 用户信息
+                    # f"欢迎, {username}",  # 用户信息
                     "",  # 清空错误消息
                     {'display': 'none'},  # 隐藏登录按钮
                     {},  # 显示注销按钮
-                    "/"  # 重定向到主页
+                    '/'  # 重定向到主页
                 )
             return (
                 True,  # 保持模态框打开
                 dash.no_update, 
-                dash.no_update, 
+                # dash.no_update, 
                 "用户名或密码错误", 
                 dash.no_update, 
                 dash.no_update, 
@@ -170,7 +172,7 @@ def register_auth_callbacks(app):
             return (
                 False, 
                 dash.no_update, 
-                dash.no_update, 
+                # dash.no_update, 
                 "", 
                 dash.no_update, 
                 dash.no_update, 
@@ -186,7 +188,7 @@ def register_auth_callbacks(app):
             return (
                 False, 
                 current_user, 
-                "", 
+                # "", 
                 "",
                 {},  # 显示登录按钮
                 {'display': 'none'},  # 隐藏注销按钮
@@ -196,7 +198,7 @@ def register_auth_callbacks(app):
         return (
             is_open, 
             dash.no_update, 
-            dash.no_update, 
+            # dash.no_update, 
             "", 
             dash.no_update, 
             dash.no_update, 
